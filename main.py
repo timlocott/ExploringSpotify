@@ -2,7 +2,7 @@ from http import HTTPStatus
 import os
 import json
 import requests
-from json_utils import parse_json, prettify_json
+from json_utils import prettify_json
 
 client_id = os.environ.get("CLIENT_ID")
 client_secret = os.environ.get("CLIENT_SECRET")
@@ -87,7 +87,7 @@ def search_artist_by_name(name, access_token):
             print('No artist found.')
         else:
             artist = response.json().get('artists').get('items')[0]
-            pretty_data = prettify_json(artist)
+            pretty_data = json.dumps(artist, indent=4)
             print(pretty_data)
 
 
